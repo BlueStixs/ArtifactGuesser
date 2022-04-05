@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+
+<head>
+    <link rel="icon" href="images/icons/icon.jpg">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:700" rel="stylesheet">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+
+    <script src="files/artifacts.js"></script>
+    <script src="script.js"></script>
+    <title>Guess the Artifact Level</title>
+
+<body onload="loadSite()">
+    <div class="bg-image home">
+        <center>
+            <img src="images/icons/logo.png" id="logo" onclick="homePage()">
+            <div id="homeScreen">
+
+                <button class="playBtn" onclick="play()">Play Now</button>
+                <p>
+                    <font color="yellow">Note:</font> the recent 5-star character would be Kokomi, but Shenhe, Gorou,
+                    Itto, etc. are on this list because of <img id="suske" src="images/icons/suske.png">
+                </p>
+
+            </div>
+        </center>
+
+        <div class="theGame">
+            <div class="charImage">
+
+                <img id="censorBar" src="images/icons/censor.png">
+                <img id="image1">
+
+                <img id="image2">
+
+
+                <center>
+                    <span class="caption">
+                        <div id="buttons">
+                            <br>
+                            <button class="higherLowerBtn" onclick="checkWin(true)">+4-+7</button>
+                            <button class="higherLowerBtn" onclick="checkWin(true)">+8-+11</button>
+                            <button class="higherLowerBtn" onclick="checkWin(true)">+12-+15</button>
+                            <button class="higherLowerBtn" onclick="checkWin(true)">+16-+19</button>
+                            <button class="higherLowerBtn" onclick="checkWin(true)">+20</button><br>
+                    </span>
+                </center>
+
+            </div>
+        </div>
+
+
+    </div>
+
+    <div id="win">
+        <center>
+            <h1>You Won! <img id="winlose" src="images/icons/enviChill.png"></h1>
+            <p id="finalscore"></p>
+            <button class="playBtn" onclick="play()">Try Again</button>
+        </center>
+    </div>
+
+    <div id="lose">
+        <center>
+            <h1>You lost <img id="winlose" src="images/icons/enviSad.png"></h1>
+            <p id="finalscore"></p>
+            <button class="playBtn" onclick="play()">Try Again</button>
+        </center>
+    </div>
+    <br>
+
+    <div id="highscore"></div>
+    <div id="currScore"></div>
+
+    <div class="footer">
+        <p>Made by <a href="https://www.twitter.com/BlueStixs" target="_blank">BlueStixs</a></p>
+        <p>Subscribe to <a href="https://www.youtube.com/Enviosity?sub_confirmation=1" target="_blank"
+                onclick="selloutMessage()">Enviosity</a>
+        </p>
+
+    </div>
+
+    </div>
+</body>
+<script src="script.js"></script>
+</head>
+
+</html>
