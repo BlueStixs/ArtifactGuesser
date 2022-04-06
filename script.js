@@ -7,6 +7,8 @@ function homePage() {
 }
 
 function loadSite() {
+    console.log("you cheater, stop looking here")
+
     if (!localStorage.highScore) {
         localStorage.highScore = 0;
     }
@@ -41,7 +43,7 @@ function play() {
     setTimeout(function () {
         document.getElementById("censorBar").style.opacity = 1;
         setTimeout(function () {
-            document.getElementById("myArtifact").src = "images/artifacts/" + charOne + ".png";
+            document.getElementById("myArtifact").src = artifactList[charOne][1];
         }, 100)
     }, 200)
 
@@ -54,9 +56,8 @@ function play() {
 
 function generateRandom() {
     var randomArtifact = Math.floor(Math.random() * (artifactList.length - 1));
-
     if (completed.includes(randomArtifact)) {
-        console.log("MONKA");
+        console.log("repeat");
         var monkaW = 0;
         while (completed.includes(randomArtifact)) {
             randomArtifact = Math.floor(Math.random() * (artifactList.length - 1))
@@ -67,24 +68,27 @@ function generateRandom() {
         }
     }
     //adds current character to completed
+    console.log("Artifact number: " + randomArtifact + " | Level: " + artifactList[randomArtifact][0]);
     completed.push(randomArtifact);
 
     return randomArtifact;
 }
 
 function checkWin(input) {
+    console.log("Your Input: " + input);
+    console.log("Actual: " + artifactList[charOne][0]);
 
+    theBtn = getChosenBtn(input);
 
-    console.log("Your Input:" + input);
-
-    console.log("Actual:" + artifactList[charOne]);
-
+    document.getElementById("buttonChosen").innerHTML = "You chose: " + theBtn;
+    document.getElementById("buttons").style.display = "none";
     setTimeout(function () {
+
         document.getElementById("censorBar").style.opacity = 0;
-    }, 300);
+    }, 500);
 
     //win
-    if (input == artifactList[charOne]) {
+    if (input == artifactList[charOne][0]) {
         setTimeout(function () {
             score++;
             changeScore(score);
@@ -102,6 +106,20 @@ function checkWin(input) {
     }
 }
 
+//theres probably an easier way but i got lazy
+function getChosenBtn(input) {
+    if (input == 0) {
+        return "+0-+7";
+    } else if (input == 1) {
+        return "+8-+11";
+    } else if (input == 2) {
+        return "+12-+15";
+    } else if (input == 3) {
+        return "+16-+19";
+    } else {
+        return "+20";
+    }
+}
 function changeScore(score) {
     scaleUp("currScore");
     document.getElementById("currScore").innerHTML = "Score: " + score;
@@ -113,9 +131,9 @@ function changeScore(score) {
 }
 
 function playerWinLose(check) {
-    console.log(check);
     if (score == artifactList.length - 1 || check == "lose") {
         setTimeout(function () {
+            document.getElementById("buttonChosen").innerHTML = "";
             document.getElementById("charImage").style.display = "none";
             document.getElementById("buttons").style.display = "none";
 
@@ -126,13 +144,14 @@ function playerWinLose(check) {
             document.getElementById(check).style.display = "block";
             document.getElementById("finalscore").innerHTML = "Your final score: " + score;
             document.getElementById("currScore").innerHTML = "Score: " + score;
-        }, 400);
+        }, 700);
     } else {
         play();
     }
 }
 
 function clearAll() {
+    document.getElementById("buttonChosen").innerHTML = "";
     document.getElementById("win").style.display = "none";
     document.getElementById("lose").style.display = "none";
     document.getElementById("charImage").style.display = "block";
@@ -170,7 +189,6 @@ function scaleUp(myId) {
 
 function slideUp() {
     document.getElementById("charImage").style.transform = "translateY(-20.5vh)"
-
 }
 
 function slideIn() {
@@ -179,6 +197,8 @@ function slideIn() {
         document.getElementById("charImage").style.transform = "translateY(0)";
         setTimeout(function () {
             document.getElementById("charImage").style.opacity = "1";
+            document.getElementById("buttons").style.display = "block";
+
         }, 400);
     }, 400);
 }
