@@ -101,6 +101,7 @@ button:hover {
 
 button.playBtn {
     padding: 2vh 5vh;
+    z-index: 100;
 }
 
 button.higherLowerBtn {
@@ -111,6 +112,8 @@ button.higherLowerBtn {
 
 #buttons {
     display: none;
+    z-index: 100;
+
 }
 
 #logo {
@@ -128,7 +131,6 @@ button.higherLowerBtn {
 
 #scores {
     bottom: 0;
-    display: none;
     position: absolute;
 }
 
@@ -163,13 +165,20 @@ button.higherLowerBtn {
     width: 5vh;
 }
 
-
-
-.charImage {
-    
+#charImage {
+    visibility: hidden;
+    opacity: 0;
 }
 
-#image1, #image2 {
+#myArtifact, #image2 {
+    /*disable dragging image */
+    -webkit-user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    pointer-events: none;
+
     width: 20%;
     position: absolute;
     margin-left: auto;
@@ -177,9 +186,9 @@ button.higherLowerBtn {
     left: 0;
     right: 0;
     text-align: center;
-    transform: translateX(0.1vh);
+    transform: translateY(0.1vh);
     opacity: 0;
-    z-index: 0;
+    z-index: -6;
 
 }
 
@@ -190,9 +199,8 @@ button.higherLowerBtn {
     left: 0;
     right: 0;
     text-align: center;
-    display: none;
     width: 20%;
-    z-index: 1;
+    z-index: -5;
 }
 
 .caption {
